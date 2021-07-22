@@ -13,7 +13,7 @@ export default function SignOut() {
     
     return (
         <div>
-            <i onClick={clickHandler} className="fas fa-sign-out-alt"></i>
+            <i onClick={clickHandler} className="fas fa-power-off"></i>
         </div>
     )
 }

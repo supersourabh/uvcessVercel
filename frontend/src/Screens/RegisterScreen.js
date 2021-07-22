@@ -48,7 +48,8 @@ export default function RegisterScreen(props) {
         <form onSubmit={submitHandler}>
              <ul>
                     <li>
-                        <h2>Signup</h2>
+                        <h2>  Welcome to UVCESS</h2>
+                        <h2> Signup here !</h2>
                     </li>
                     {
                         loading ?<Loading/>:
@@ -106,6 +107,7 @@ export default function RegisterScreen(props) {
                     <li>
                         <button type="submit"  className="btn btn-success">submit</button>
                     </li>
+                    
                 </ul>
         </form>
         

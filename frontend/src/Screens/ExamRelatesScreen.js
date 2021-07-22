@@ -5,8 +5,8 @@ import Alerts from '../HomeComponents/Alerts'
 import Loading from '../HomeComponents/Loading'
 
 export default function ExamRelatesScreen(props) {
-    const [sem, setSem] = useState(1)
-    const [timetable, setTimetable] = useState("Question-Paper")
+    const [sem, setSem] = useState(null)
+    const [timetable, setTimetable] = useState(null)
 
     const syllabusMaterial = useSelector(state => state.syllabusMaterial)
     const { materialSyllabusInfo, error, loading } = syllabusMaterial;
@@ -22,17 +22,11 @@ export default function ExamRelatesScreen(props) {
 
     const showHandler = (e) => {
         e.preventDefault()
-        dispatch(syllabusAction(timetable, sem, studentInfo.branch))
-    }
-
-    const viewHandler = (item) => {
-        props.history.push(`/material/view/${item._id}`)
-    }
-    function imageSrc(item) {
-        var binary = '';
-        var bytes = [].slice.call(new Uint8Array(item.doc.data.data));
-        bytes.forEach((b) => binary += String.fromCharCode(b));
-        return window.btoa(binary);
+        if (timetable===null || sem===null) {
+            alert("Select all fields...")
+        } else {
+            dispatch(syllabusAction(timetable, sem, studentInfo.branch))
+        }
     }
 
 
@@ -40,10 +34,12 @@ export default function ExamRelatesScreen(props) {
     return (
         <div className="sem" >
             <select value={ timetable } onChange={ (e) => setTimetable(e.target.value) }>
+                <option value={null} selected>Select Type</option>
                 <option value="Question-Paper">Question-paper</option>
                 <option value="Results">Results</option>
             </select>
             <select value={ sem } onChange={ (e) => setSem(e.target.value) }>
+                <option value={null} selected >Select Sem</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>

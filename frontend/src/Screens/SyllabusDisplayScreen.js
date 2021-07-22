@@ -5,8 +5,8 @@ import Alerts from '../HomeComponents/Alerts'
 import Loading from '../HomeComponents/Loading'
 
 export default function SyllabusDisplayScreen(props) {
-    const [sem, setSem] = useState(1)
-    const [timetable, setTimetable] = useState("Syllabus")
+    const [sem, setSem] = useState(null)
+    const [timetable, setTimetable] = useState(null)
 
     const syllabusMaterial = useSelector(state => state.syllabusMaterial)
     const { materialSyllabusInfo, error, loading } = syllabusMaterial;
@@ -22,29 +22,27 @@ export default function SyllabusDisplayScreen(props) {
 
     const showHandler = (e) => {
         e.preventDefault()
-        dispatch(syllabusAction(timetable, sem, studentInfo.branch))
+        if (sem === null || timetable === null) {
+            alert("select all fields ...")
+        } else {
+            dispatch(syllabusAction(timetable, sem, studentInfo.branch))
+        }
     }
 
-    const viewHandler = (item) => {
-        props.history.push(`/material/view/${item._id}`)
-    }
-    function imageSrc(item) {
-        var binary = '';
-        var bytes = [].slice.call(new Uint8Array(item.doc.data.data));
-        bytes.forEach((b) => binary += String.fromCharCode(b));
-        return window.btoa(binary);
-    }
+
 
 
 
     return (
         <div className="sem" >
             <select value={ timetable } onChange={ (e) => setTimetable(e.target.value) }>
+                <option value={ null } selected >Select Type</option>
                 <option value="Syllabus">Syllabus</option>
                 <option value="Time-table">Time-table</option>
 
             </select>
             <select value={ sem } onChange={ (e) => setSem(e.target.value) }>
+                <option value={ null } selected>Select Sem</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>

@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useState } from 'react'
+import React, { lazy, Suspense, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { materialAction } from '../Actions/AllActions';
 import Alerts from '../HomeComponents/Alerts';
@@ -9,11 +9,12 @@ import SubjectsMaterial from '../HomeComponents/SubjectsMaterial';
 //const SubjectsMaterial = lazy(()=>import ("../HomeComponents/SubjectsMaterial") );
 
 export default function SubjectScreen(props) {
-    const [sem, setSem] = useState(1)
+    const [sem, setSem] = useState(null)
     const [data, setData] = useState(null)
     const [src, setSrc] = useState()
 
     const material = useSelector(state => state.material);
+
 
     const { materialInfo, error, success, loading } = material;
 
@@ -25,38 +26,22 @@ export default function SubjectScreen(props) {
     const dispatch = useDispatch()
 
     const showHandler = (e) => {
-        dispatch(materialAction(sem, studentInfo.branch, 1))
-    }
-
-    function imageSrc(item) {
-        var binary = '';
-        var bytes = [].slice.call(new Uint8Array(item.doc.data.data));
-        bytes.forEach((b) => binary += String.fromCharCode(b));
-        return window.btoa(binary);
-    }
-
-    const download = async (id, e) => {
-        console.log("click done");
-        await fetch(`http://localhost:5000/api/material/view/${id}`, {
-            method: "POST",
-            headers: {
-                Authorization: `Bearer ${studentInfo.token}`,
-            }
+        e.preventDefault()
+        if(sem!==null){
+            dispatch(materialAction(sem, studentInfo.branch, 1))
+        }else{
+            alert("Please fill all the fields..")
         }
-        ).then((res) => setData(res))
-        console.log(data)
-        setSrc(`data:${data.doc.contentType};base64,${imageSrc(data)}`)
-
-
-
-
-
     }
+
+
 
 
     return (
         <div className="sem">
+
             <select value={ sem } onChange={ (e) => setSem(e.target.value) }>
+                <option value={null} selected>Select sem</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>

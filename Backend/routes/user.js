@@ -13,7 +13,7 @@ userRouter.post("/signup" , async (req ,res)=>{
     const branch = req.body.branch
     const contact = req.body.contact
     const sem = req.body.sem
-    const admin =false
+    const admin =true
 
 
     try {

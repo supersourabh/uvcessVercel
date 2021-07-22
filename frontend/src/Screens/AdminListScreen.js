@@ -52,7 +52,7 @@ export default function AdminListScreen(props) {
             <ul>
 
                 <h2 style={ { color: "green", textAlign: "center", textDecoration: "underline" } }>INFORMATION</h2>
-                <text className="btn btn-info" style={ { marginBottom: 10 } }>Please click get on changing ,otherwise you may get wrong !!!  (We are working on that )</text>
+                <text className="btn btn-info" style={ { marginBottom: 10 } }>Please click 'GET ..' on changing ,otherwise you may get wrong !!!  (We are working on that )</text>
                 <div style={ { padding: 10, marginBottom: 5, border: 3, borderStyle: "solid", borderColor: "#dc9299" } }>
 
                     <select required onChange={ (e) => {
@@ -89,6 +89,10 @@ export default function AdminListScreen(props) {
                                             list === "members" &&
                                             <th>Work</th>
                                         }
+                                        {
+                                            list === "crs" || list === "students" ?
+                                            <th>Roll-No</th>:null
+                                        }
 
                                         <th>Contact</th>
                                         {
@@ -115,6 +119,10 @@ export default function AdminListScreen(props) {
                                                 {
                                                     list === "members" &&
                                                     <td>{ member.work }</td>
+                                                }
+                                                {
+                                                    list === "crs" || list === "students" ?
+                                                    <td>{ member.rollNo }</td>:null
                                                 }
                                                 <td>{ member.contact ? member.contact : "---" }</td>
                                                 {
