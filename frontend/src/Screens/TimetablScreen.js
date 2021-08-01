@@ -6,7 +6,7 @@ import Alerts from '../HomeComponents/Alerts'
 import Loading from '../HomeComponents/Loading'
 
 export default function TimetablScreen() {
-    const [branch, setBranch] = useState("mechanical")
+    const [branch, setBranch] = useState("Mechanical")
     const [sem, setSem] = useState(1)
     const [timetable, setTimetable] = useState("Syllabus")
     const [subject, setSubject] = useState()
