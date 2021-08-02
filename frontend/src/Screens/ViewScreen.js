@@ -34,7 +34,7 @@ export default function ViewScreen(props) {
         <div className="view">
             {
                 loading?<Loading/>:
-                error?<Alerts info="danger" message={error}/>:
+                error?<Alerts info="danger" message={" Not Found !!!"}/>:
                 item&&
                 <iframe title="fisdfjoufsh" src={`data:${item.doc.contentType};base64,${imageSrc(item)}`} type={item.doc.contentType} width="100%" height="100%" ></iframe>
             }
