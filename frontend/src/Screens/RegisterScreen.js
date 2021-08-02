@@ -50,7 +50,7 @@ export default function RegisterScreen(props) {
                     <li>
                         <h2>  Welcome to UVCESS</h2>
                         <h2> Signup here !</h2>
-                        <h4>Already have an account?<a href="/login">click here</a></h4>
+                        <b>Already have an account?<a href="/">click here</a></b>
                     </li>
                     {
                         loading ?<Loading/>:
