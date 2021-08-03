@@ -36,7 +36,7 @@ export default function ViewScreen(props) {
                 loading?<Loading/>:
                 error?<Alerts info="danger" message={" Not Found !!!"}/>:
                 item&&
-                <embed title="fisdfjoufsh" src={`data:${item.doc.contentType};base64,${imageSrc(item)}`} type={item.doc.contentType} width="100%" height="100%" ></embed>
+                <embed src={`data:${item.doc.contentType};base64,${imageSrc(item)}`} type={item.doc.contentType} width="100%" height="100%" />
             }
 
         </div>
