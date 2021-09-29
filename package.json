@@ -6,7 +6,7 @@
   "scripts": {
     "build": "cd frontend && npm install && npm run build",
     "install-client": " cd frontend && npm install",
-    "heroku-postbuild": "npm install --prefix frontend && npm run build --prefix frontend",
+    "heroku-postbuild": "npm install --prefix frontend && npm install && npm run build --prefix frontend",
     "start": "nodemon --watch Backend --exec babel-node Backend/server.js "
   },
   "author": "",
